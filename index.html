@@ -9,11 +9,15 @@
 <body>
     <h1>Rock Paper Scissors Game</h1>
     <h3>Pick your choice.</h3>
-    <button onclick="choice(1)">Rock</button>
-    <button onclick="choice(2)">Paper</button>
-    <button onclick="choice(3)">Scissors</button>
-    <button onclick="CheckWinner()">Submit</button>
-    <button onclick="reset()">Reset Score</button>
+    <div class="photo_container">
+        <img src="rock.png" alt="rock" onclick="choice(1)">
+        <img src="paper.png" alt="paper" onclick="choice(2)">
+        <img src="scissors.png" alt="scissors" onclick="choice(3)">
+    </div>
+    <div class="buttons">
+        <button onclick="CheckWinner()">Submit</button>
+        <button onclick="reset()">Reset Score</button>
+    </div>
     <div id="result"></div>
     <div id="score"></div>
 </body>
