@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Rock Paper Scissors Game</h1>
+    <h3>Pick your choice.</h3>
+    <button onclick="choice(1)">Rock</button>
+    <button onclick="choice(2)">Paper</button>
+    <button onclick="choice(3)">Scissors</button>
+    <button onclick="CheckWinner()">Submit</button>
+    <button onclick="reset()">Reset Score</button>
+    <div id="result"></div>
+    <div id="score"></div>
+</body>
+<script>
+    let win=0;
+    let lose=0;
+    let tie=0;
+    const choices = ['Rock','Paper','Scissors'];
+    let user_choice=null;
+    let score = document.createElement('p');
+
+    function CheckWinner(){
+    const computer_choice=Math.floor(Math.random()*3)+1;
+    const p = document.createElement('p');
+    document.getElementById('result').innerHTML="";
+    document.getElementById('score').innerHTML="";
+    if (user_choice === null){
+        alert("Please pick a choice first!");
+    }
+    if(user_choice===computer_choice){
+     p.innerHTML="You both picked "+choices[computer_choice-1]+" So it's Tie!!!";
+     tie++;
+    }
+
+    else if(user_choice===1 && computer_choice===2 || user_choice===2 && computer_choice===3 || user_choice===3 && computer_choice===1){
+        p.innerHTML="You picked "+choices[user_choice-1]+" and the computer picked " +choices[computer_choice-1]+ " So You Lose :("
+        lose++;
+    }else if(user_choice===1 && computer_choice===3 || user_choice===2 &&       computer_choice===1 || user_choice===3 && computer_choice===2){
+        p.innerHTML="You picked "+choices[user_choice-1]+" and the computer picked " +choices[computer_choice-1]+ " So You Win :)";
+        win++;
+    }
+        document.getElementById('result').appendChild(p);
+        score.innerHTML= "Score: <br> Win: "+win+"<br> Lose: "+lose+"<br> Tie: "+tie;
+        document.getElementById('score').appendChild(score);
+        user_choice=null;
+    }
+    function choice(num){
+    user_choice=num;
+    }
+    function reset(){
+        win=0;
+        lose=0;
+        tie=0;
+        score.innerHTML= "Score: <br> Win: "+win+"<br> Lose: "+lose+"<br> Tie: "+tie;
+        document.getElementById('score').appendChild(score);
+        document.getElementById('result').innerHTML="";
+
+    }
+</script>
+</html>
