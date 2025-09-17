@@ -33,9 +33,10 @@
     const computer_choice=Math.floor(Math.random()*3)+1;
     const p = document.createElement('p');
     document.getElementById('result').innerHTML="";
-    document.getElementById('score').innerHTML="";
     if (user_choice === null){
         alert("Please pick a choice first!");
+        return;
+        updateScore();
     }
     if(user_choice===computer_choice){
      p.innerHTML="You both picked "+choices[computer_choice-1]+" So it's Tie!!!";
@@ -50,13 +51,20 @@
         win++;
     }
         document.getElementById('result').appendChild(p);
-        score.innerHTML= "Score: <br> Win: "+win+"<br> Lose: "+lose+"<br> Tie: "+tie;
-        document.getElementById('score').appendChild(score);
+        document.getElementById('score').innerHTML="";
+        updateScore();
         user_choice=null;
+    }
+    function updateScore() {
+        document.getElementById('score').innerHTML = "";
+        score.innerHTML = "Score: <br> Win: " + win + "<br> Lose: " + lose + "<br> Tie: " + tie;
+        document.getElementById('score').appendChild(score);
     }
     function choice(num){
     user_choice=num;
-    }
+    document.querySelectorAll(".photo_container img").forEach(img => img.classList.remove("selected"));
+    document.querySelector(`.photo_container img:nth-child(${num})`).classList.add("selected");
+   }
     function reset(){
         win=0;
         lose=0;
